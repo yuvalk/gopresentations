@@ -28,10 +28,19 @@ Not an Intro to Go
 
 * Multiprocessing recap
 
-.image Go-Logo_Black.png 400 _
+* What is Process
+.image process.png 250 _
+ready queue
+.image process-queues.png 200 _
+: A process is an instance of a program that is being executed.
+: 
 
-.caption from [[https://blog.golang.org/go-brand][The go branding strategy]]
+* What is a Thread
+.image process-vs-thread.png
+"lightweight" process, managed independently by the scheduler.
 
+* Concurrent vs Parallel
+.image concurrent_vs_parallel.png
 
 * Brief history of multithreading
 
@@ -89,6 +98,11 @@ _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_addre
 
 
 * Why are they different?
+
+* Mile per Gallon
+[[https://github.com/golang/go/blob/master/src/runtime/proc.go#L22][src/runtime/proc.go]]:
+.code proc.go /START OMIT/,/END OMIT/
+Each goroutine (G) runs on an OS thread (M) that is assgined to a logical CPU (P)
 
 * Channels
 
@@ -157,7 +171,7 @@ A way to multiplex several channels. Waits until a communication for one of its 
 
 * A simple goroutine 
 
-.play goroutine.go /START OMIT/,/END OMIT/
+.play -edit goroutine.go /START OMIT/,/END OMIT/
 
 * With synchronization
 
