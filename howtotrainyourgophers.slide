@@ -18,7 +18,6 @@ Presentation inspired and derived from `[[https://github.com/fedepaol/howtotrain
 
 
 * Agenda
-
 Not an Intro to Go
 - Multiprocessing recap
 - Brief history of multithreading
@@ -32,7 +31,6 @@ Not an Intro to Go
 ready queue
 .image process-queues.png 200 _
 : A process is an instance of a program that is being executed.
-: 
 
 * What is a Thread
 .image process-vs-thread.png
@@ -42,30 +40,24 @@ ready queue
 .image concurrent_vs_parallel.png
 
 * Brief history of multithreading
-
 .image multithreading.jpeg 350 _
 .caption image from playembbeded.com
 
 * multi processing
-
 .code multiprocess.c /START OMIT/,/END OMIT/
 $ time ./mproc 
 
 real	0m1.433s
-
 : written in C, because there is no (easy) go equivalency 
 
 * multi threading
-
 .code multithread.c /START OMIT/,/END OMIT/
 $time ./mthread
 
 real 0m0.582s
-
 : threads are faster, less context switch overhead
 
 * goroutines
-
 .play goroutines.go /START OMIT/,/END OMIT/
 $ time go run goroutine.go 
 Customer: ordered pizza
@@ -73,15 +65,12 @@ Customer: ordered pizza
 real	0m0.216s
 
 * Where are my gophers?!
-
 .image beergophers.png 400 _
-
 : A bug in multithreading can result in memory corruption with unexpected and unpredictable results. Moreover, it could happen in very rare situations difficult to reproduce with tests.
 : What's more, a wrong usage of the locking primitives can result in a deadlock of two or more threads.
 : *Getting*threading*right*is*difficult*
 
 * Goroutines
-
 Goroutines are lightweight threads managed by the Go runtime.
 
 	go myFunction()
