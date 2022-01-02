@@ -103,6 +103,11 @@ real	0m0.216s
 : What's more, a wrong usage of the locking primitives can result in a deadlock of two or more threads.
 : *Getting*threading*right*is*difficult*
 
+* A minute for Hebrew speakers
+.image gopher.jpg 350 _
+Pocket gophers, commonly referred to simply as gophers, are burrowing rodents of the family Geomyidae.[2] The roughly 41 species[3] are all endemic to North and Central America.[4] They are commonly known for their extensive tunneling activities and their ability to destroy farms and gardens. 
+[[https://en.wikipedia.org/wiki/Gopher][wikipedia - Gopher]]
+
 * Goroutines
 Goroutines are lightweight threads managed by the Go runtime.
 
