@@ -19,10 +19,43 @@ Presentation inspired and derived from `[[https://github.com/fedepaol/howtotrain
 
 * Agenda
 Not an Intro to Go
+- Why Go
 - Multiprocessing recap
 - Brief history of multithreading
 - Go Routines
 - Go
+
+* Why Go
+.image Go-Logo_Black.png 400 _
+.caption from [[https://blog.golang.org/go-brand][The go branding strategy]]
+: Very popular
+: one of the only 4 dev languages allowed @ Google (others are: Python, c/c++ and Java)
+: the most interesting things released in the last period are done in go
+
+* Why Go
+.image companiesusing.png 400 _
+.caption from [[https://go.dev][go.dev]]
+: crossing the chasm
+
+* The recipe for Go
+- Go back to the 70s / 80s and find a bunch of great programmers. Say, Ken Thompson, Rob Pike, people like that. Marinate them in Bell Labs for 30 years, during which time they code in C, keep developing Unix, invent Plan 9, UTF-8, and other wonderful things.
+- Take them out, seduce them with Python, wow them with Google-scale computing. Add more amazing programmers (Brad Fitzpatrick for example), stir in Google’s near-unlimited resources.
+- Ask them how they would do C now, if they could start from scratch.
+.caption _credits_ by [[https://www.darkcoding.net/software/go-lang-after-four-months/][Graham King]]
+
+* Can a language be fast and fun to use?
+.image gograph.png 400 _
+
+* Go's elevator pitch:
+- fast
+- good at networking and multiprocessing
+- scales well
+- easy to learn
+- comprehensible
+
+* Go vs lower level languages
+gVisor was written in Go in order to avoid security pitfalls that can plague kernels. With Go, there are strong types, built-in bounds checks, no uninitialized variables, no use-after-free, no stack overflow, and a built-in race detector. (The use of Go has its challenges too, and isn't free.)
+.caption from [[https://github.com/google/gvisor][google gvisor repository]]
 
 * Multiprocessing recap
 
