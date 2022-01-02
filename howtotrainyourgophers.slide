@@ -99,9 +99,9 @@ real	0m0.216s
 
 * Where are my gophers?!
 .image beergophers.png 400 _
+*Getting*threading*right*is*difficult*
 : A bug in multithreading can result in memory corruption with unexpected and unpredictable results. Moreover, it could happen in very rare situations difficult to reproduce with tests.
 : What's more, a wrong usage of the locking primitives can result in a deadlock of two or more threads.
-: *Getting*threading*right*is*difficult*
 
 * A minute for Hebrew speakers
 .image gopher.jpg 350 _
@@ -113,10 +113,11 @@ Goroutines are lightweight threads managed by the Go runtime.
 
 	go myFunction()
 
-*Why*lighter?*
-
-- smaller (altough variable) stack
+*Advantages of Goroutines
+- cheap.
+- Smaller (altough variable) stack
 - many goroutines can share a single os thread
+- Communicate via channels, prevent race conditions
 - scheduling not invoked periodically but as a consequence of synchronization
 
 _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_address_space_
@@ -124,8 +125,24 @@ _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_addre
 * Example
 .play goroutine_intro.go /START OMIT/,/END OMIT/
 
+* Syncronization
+- Goroutines run the same address space
+- Access to shared memory must be syncronized
 
-* Why are they different?
+* No Sync Example
+.play goroutine_nosync.go /START OMIT/,/END OMIT/
+
+* locking
+.play goroutine_lock.go /START OMIT/,/END OMIT/
+
+* Why are they diffensrent?
+A short intro to goroutines internals
+
+* What are goroutines
+- Groutine is nothing but a go structure
+- Contains info about the running program
+- Go scheduler use that info to give them running time
+: stack, counter, os thread, etc
 
 * Mile per Gallon
 [[https://github.com/golang/go/blob/master/src/runtime/proc.go#L22][src/runtime/proc.go]]:
