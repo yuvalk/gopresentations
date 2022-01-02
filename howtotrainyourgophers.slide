@@ -114,8 +114,10 @@ Goroutines are lightweight threads managed by the Go runtime.
 - many goroutines can share a single os thread
 - scheduling not invoked periodically but as a consequence of synchronization
 
-
 _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_address_space_
+
+* Example
+.play goroutine_intro.go /START OMIT/,/END OMIT/
 
 
 * Why are they different?
