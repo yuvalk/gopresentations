@@ -138,6 +138,8 @@ _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_addre
 * Why are they diffensrent?
 A short intro to goroutines internals
 
+Heavily and shamelessly influenced by [[https://medium.com/a-journey-with-go]["A Journey With Go"]]
+
 * What are goroutines
 - Groutine is nothing but a go structure
 - Contains info about the running program
@@ -148,4 +150,46 @@ A short intro to goroutines internals
 [[https://github.com/golang/go/blob/master/src/runtime/proc.go#L22][src/runtime/proc.go]]:
 .code proc.go /START OMIT/,/END OMIT/
 Each goroutine (G) runs on an OS thread (M) that is assgined to a logical CPU (P)
+.image PMG.png _ 1000
+
+* Go Scheduler
+- Create _P_ for each logical CPU and add to idle list
+- goroutine ready to run wil wake a _P_ up.
+- This _P_ will create an _M_ with the associated OS thread
+.image gsched.png _ 600
+
+* New threads (more _M_ than _P_)
+The case of system calls
+- System calls are wrapped in the runtime
+- Wrapper automatically dissociate _P_ from _M_ and allow another thread to run on itA
+.image syscallsched.png _ 380
+- _P0_ is now idle and potentially another thread can use it
+When syscall exits:
+- try to acquire same _P_ (_P0_ above)
+- try to acquire _P_ from idle list
+- put goroutine in the global queue and _M_ back to idle list
+: this is more complicated, there are other cases
+
+* How Does Goroutine Starts?
+- Create stack
+- Collect info about current program counter
+- Update internal data of the goroutine
+- Newly created goroutine is added to the top of the cpu (_P_) queue
+
+* Work Stealing
+
+When a processor does not have any work
+
+- pull work from the local queue
+- pull work from the global queue
+- pull work from network poller
+- steal work from another _P_ local queue
+.image workstealing.png _ 500
+: Goroutines are always added to the local queue, Unless it is full, then they are added to the global queue
+
+* How Does Goroutine Ends (exit)?
+- Goroutines are recycled
+- While creating goroutine, go sets the stack to _goexit_ before setting pc to real function
+- This causes goroutine to call _goexit_ after ending its work
+
 
