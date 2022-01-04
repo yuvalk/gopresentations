@@ -61,10 +61,6 @@ Not an Intro to Go
 - comprehensible
 : remember, code is usually write once read many
 
-* Go vs lower level languages
-gVisor was written in Go in order to avoid security pitfalls that can plague kernels. With Go, there are strong types, built-in bounds checks, no uninitialized variables, no use-after-free, no stack overflow, and a built-in race detector. (The use of Go has its challenges too, and isn't free.)
-.caption from [[https://github.com/google/gvisor][google gvisor repository]]
-
 * Multiprocessing recap
 
 * What is Process
