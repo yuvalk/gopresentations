@@ -9,6 +9,7 @@ yuval@redhat.com
 [[https://github.com/yuvalk/howtotrainyourgophers][_this_ _presentation_]] _was_ _written_ _in_ _go_
 
 Presentation inspired and derived from `[[https://github.com/fedepaol/howtotrainyourgophers][How to train your gophers]]` by the great [[@fedepaol][Federico Paolinelli]]
+: I'm going to talk about complex stuff, I know this might be difficult to grasp, because it was difficult for me as well...
 
 * About me
 - Telco 5G Platform Engineering, Security Team Lead @ Red Hat
@@ -42,9 +43,15 @@ Not an Intro to Go
 - Take them out, seduce them with Python, wow them with Google-scale computing. Add more amazing programmers (Brad Fitzpatrick for example), stir in Google’s near-unlimited resources.
 - Ask them how they would do C now, if they could start from scratch.
 .caption _credits_ by [[https://www.darkcoding.net/software/go-lang-after-four-months/][Graham King]]
+: This is what I think the recipe for Go looked like:
+: Ken Thompson - unix, B lang, plan 9, now golang
+: Rob Pike - unix, plan 9, now golang
+: Brad Fitzpatrick - memcached, openid, golang, now tailscale (VPN Company)
 
 * Can a language be fast and fun to use?
 .image gograph.png 400 _
+: I didnt made this graph, so can argue about various languages
+: But certainly Go is both fast for humans and efficient for computers (high in both)
 
 * Go's elevator pitch:
 - fast
@@ -52,6 +59,7 @@ Not an Intro to Go
 - scales well
 - easy to learn
 - comprehensible
+: remember, code is usually write once read many
 
 * Go vs lower level languages
 gVisor was written in Go in order to avoid security pitfalls that can plague kernels. With Go, there are strong types, built-in bounds checks, no uninitialized variables, no use-after-free, no stack overflow, and a built-in race detector. (The use of Go has its challenges too, and isn't free.)
