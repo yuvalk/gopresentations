@@ -26,14 +26,14 @@ Not an Intro to Go
 - Go Routines Internals
 
 * Why Go
-.image Go-Logo_Black.png 400 _
+.image Go-Logo_Black.png 600 _
 .caption from [[https://blog.golang.org/go-brand][The go branding strategy]]
 : Very popular
 : one of the only 4 dev languages allowed @ Google (others are: Python, c/c++ and Java)
 : the most interesting things released in the last period are done in go
 
 * Why Go
-.image companiesusing.png 400 _
+.image companiesusing.png 600 _
 .caption from [[https://go.dev][go.dev]]
 : crossing the chasm
 
@@ -48,7 +48,7 @@ Not an Intro to Go
 : Brad Fitzpatrick - memcached, openid, golang, now tailscale (VPN Company)
 
 * Can a language be fast and fun to use?
-.image gograph.png 400 _
+.image gograph.png 800 _
 : I didnt made this graph, so can argue about various languages
 : But certainly Go is both fast for humans and efficient for computers (high in both)
 
@@ -61,30 +61,29 @@ Not an Intro to Go
 : remember, code is usually write once read many
 
 * Multiprocessing recap
-.image multithreading.jpeg 350 _
+.image multithreading.jpeg 600 _
 .caption image from playembbeded.com
 
 * Concurrent vs Parallel
-.image concurrent_vs_parallel.png
+.image concurrent_vs_parallel.png 1500 _
 
-* What is Process
-.image process.png 250 _
-ready queue
-.image process-queues.png 200 _
+* What is a Process
+.image process.png 300 _
+.image process-queues.png 400 _
 : A process is an instance of a program that is being executed.
 
 * What is a Thread
-.image process-vs-thread.png
+.image process-vs-thread.png 700 _
 "lightweight" process, managed independently by the OS scheduler.
 
 * Where are my gophers?!
-.image beergophers.png 400 _
+.image beergophers.png 600 _
 *Getting*threading*right*is*difficult*
 : A bug in multithreading can result in memory corruption with unexpected and unpredictable results. Moreover, it could happen in very rare situations difficult to reproduce with tests.
 : What's more, a wrong usage of the locking primitives can result in a deadlock of two or more threads.
 
 * A minute for Hebrew speakers
-.image gopher.jpg 350 _
+.image gopher.jpg 300 _
 Pocket gophers, commonly referred to simply as gophers, are burrowing rodents of the family Geomyidae.[2] The roughly 41 species[3] are all endemic to North and Central America.[4] They are commonly known for their extensive tunneling activities and their ability to destroy farms and gardens. 
 [[https://en.wikipedia.org/wiki/Gopher][wikipedia - Gopher]]
 
@@ -137,19 +136,19 @@ Heavily and shamelessly influenced by [[https://medium.com/a-journey-with-go]["A
 [[https://github.com/golang/go/blob/master/src/runtime/proc.go#L22][src/runtime/proc.go]]:
 .code proc.go /START OMIT/,/END OMIT/
 Each goroutine (G) runs on an OS thread (M) that is assgined to a logical CPU (P)
-.image PMG.png _ 1000
+.image PMG.png _ 1700
 
 * Go Scheduler
 - Create _P_ for each logical CPU and add to idle list
 - goroutine ready to run wil wake a _P_ up.
 - This _P_ will create an _M_ with the associated OS thread
-.image gsched.png _ 600
+.image gsched.png _ 800
 
 * New threads (more _M_ than _P_)
 The case of system calls
 - System calls are wrapped in the runtime
 - Wrapper automatically dissociate _P_ from _M_ and allow another thread to run on itA
-.image syscallsched.png _ 380
+.image syscallsched.png _ 600
 - _P0_ is now idle and potentially another thread can use it
 When syscall exits:
 - try to acquire same _P_ (_P0_ above)
@@ -171,7 +170,7 @@ When a processor does not have any work
 - pull work from the global queue
 - pull work from network poller
 - steal work from another _P_ local queue
-.image workstealing.png _ 500
+.image workstealing.png _ 700
 : Goroutines are always added to the local queue, Unless it is full, then they are added to the global queue
 
 * How Does Goroutine Ends (exit)?
