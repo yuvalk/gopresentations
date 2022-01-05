@@ -22,9 +22,8 @@ Presentation inspired and derived from `[[https://github.com/fedepaol/howtotrain
 Not an Intro to Go
 - Why Go
 - Multiprocessing recap
-- Brief history of multithreading
-- Go Routines
-- Go
+- How to use Go Routines
+- Go Routines Internals
 
 * Why Go
 .image Go-Logo_Black.png 400 _
@@ -62,6 +61,11 @@ Not an Intro to Go
 : remember, code is usually write once read many
 
 * Multiprocessing recap
+.image multithreading.jpeg 350 _
+.caption image from playembbeded.com
+
+* Concurrent vs Parallel
+.image concurrent_vs_parallel.png
 
 * What is Process
 .image process.png 250 _
@@ -71,35 +75,7 @@ ready queue
 
 * What is a Thread
 .image process-vs-thread.png
-"lightweight" process, managed independently by the scheduler.
-
-* Concurrent vs Parallel
-.image concurrent_vs_parallel.png
-
-* Brief history of multithreading
-.image multithreading.jpeg 350 _
-.caption image from playembbeded.com
-
-* multi processing
-.code multiprocess.c /START OMIT/,/END OMIT/
-$ time ./mproc 
-
-real	0m1.433s
-: written in C, because there is no (easy) go equivalency 
-
-* multi threading
-.code multithread.c /START OMIT/,/END OMIT/
-$time ./mthread
-
-real 0m0.582s
-: threads are faster, less context switch overhead
-
-* goroutines
-.play goroutines.go /START OMIT/,/END OMIT/
-$ time go run goroutine.go 
-Customer: ordered pizza
-
-real	0m0.216s
+"lightweight" process, managed independently by the OS scheduler.
 
 * Where are my gophers?!
 .image beergophers.png 400 _
@@ -141,6 +117,10 @@ _It_is_practical_to_create_hundreds_of_thousands_of_goroutines_in_the_same_addre
 
 * locking
 .play goroutine_lock.go /START OMIT/,/END OMIT/
+
+* Real life
+- Correlsense - async multithreading in Java
+- Elastifile - green thread, private implementation in c
 
 * Why are they diffensrent?
 A short intro to goroutines internals
@@ -199,4 +179,14 @@ When a processor does not have any work
 - While creating goroutine, go sets the stack to _goexit_ before setting pc to real function
 - This causes goroutine to call _goexit_ after ending its work
 
+* Key Takeaways
+- Learn your internals
+- avoid the temptation to summon your gopher army
+- context switch has an hidden cost
+- mutexes / rw locks have their use cases
+- use the profilers
+- use the synchronization primitives and the atomic package
+
+: they are not the solution to all evils
+: ex - map is better protected with a rw lock when shared in goroutines
 
